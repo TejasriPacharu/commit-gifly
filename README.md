@@ -2,19 +2,18 @@
 
 A GitHub App that listens to issue & PR comments and replies with relevant GIFs from Giphy. Built with Node.js, GitHub Apps API, JWT authentication, and ready for deployment with Docker. A fun way to bring GIF reactions into your GitHub workflows!
 
-![Commit Gifly Demo](https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif)
 
-## ✨ Features
+## Features
 
-- 🤖 **GitHub App Integration**: Proper GitHub App with installation-based authentication
-- 🔐 **Secure**: Webhook signature verification and JWT-based authentication
-- 🎯 **Smart GIF Search**: Powered by Giphy API with content filtering
-- 📝 **Issue & PR Support**: Works on both issues and pull request comments
-- 🚀 **Production Ready**: Comprehensive error handling and logging
-- 🐳 **Docker Support**: Easy deployment with Docker
-- ⚡ **Fast**: Cached JWT tokens and optimized API calls
+- **GitHub App Integration**: Proper GitHub App with installation-based authentication
+- **Secure**: Webhook signature verification and JWT-based authentication
+- **Smart GIF Search**: Powered by Giphy API with content filtering
+- **Issue & PR Support**: Works on both issues and pull request comments
+- **Production Ready**: Comprehensive error handling and logging
+- **Docker Support**: Easy deployment with Docker
+- **Fast**: Cached JWT tokens and optimized API calls
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -84,7 +83,7 @@ The server will start on the specified port with these endpoints:
 - `GET /health` - Health check
 - `POST /webhook` - GitHub webhook endpoint
 
-## 📖 Usage
+## Usage
 
 Once your GitHub App is installed on a repository, you can use it by commenting on issues or pull requests:
 
@@ -109,7 +108,7 @@ This looks great! [gifbot:awesome]
 
 *Powered by [Giphy](https://giphy.com) 🎬*
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 ### Build and Run with Docker
 
@@ -142,7 +141,7 @@ services:
     restart: unless-stopped
 ```
 
-## ☁️ Cloud Deployment
+## Cloud Deployment
 
 ### Heroku
 
@@ -163,7 +162,7 @@ The app can be adapted for AWS Lambda using the Serverless framework. You'll nee
 
 Both platforms support Node.js apps with environment variables and file uploads for the private key.
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -188,7 +187,7 @@ Subscribe to these events:
 - **Issue comments** (for issue comment reactions)
 - **Pull request review comments** (for PR comment reactions)
 
-## 🛠️ Development
+## Development
 
 ### Project Structure
 
@@ -214,33 +213,5 @@ Enable debug logging by setting the `DEBUG` environment variable:
 ```bash
 DEBUG=commit-gifly:* npm run dev
 ```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [GitHub Apps Documentation](https://docs.github.com/en/developers/apps)
-- [Giphy API](https://developers.giphy.com/)
-- Inspired by the original [gifbot](https://github.com/integration/gifbot) example
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-
-1. Check the [Issues](https://github.com/your-username/commit-gifly/issues) page
-2. Create a new issue with detailed information
-3. Check the logs for error messages
-
 ---
 
-Made with ❤️ and lots of ☕ by [Your Name](https://github.com/your-username)
