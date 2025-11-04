@@ -4,12 +4,35 @@ const axios = require("axios");
 
 const APP_ID = process.env.APP_ID;
 const PRIVATE_KEY_PATH = process.env.PRIVATE_KEY_PATH;
+const PRIVATE_KEY_CONTENT = process.env.PRIVATE_KEY; // For cloud deployment
 
 // Cache for JWT tokens to avoid recreating them frequently
 let jwtCache = {
   token: null,
   expiresAt: null
 };
+
+/**
+ * Get private key from file or environment variable
+ * @returns {string} Private key content
+ */
+function getPrivateKey() {
+  // First, try to use private key from environment variable (cloud deployment)
+  if (PRIVATE_KEY_CONTENT && PRIVATE_KEY_CONTENT.trim().length > 0) {
+    console.log("🔑 Using private key from environment variable");
+    // Replace literal \n with actual newlines
+    return PRIVATE_KEY_CONTENT.replace(/\\n/g, '\n');
+  }
+  
+  // Fallback to file-based private key (local development)
+  if (PRIVATE_KEY_PATH && fs.existsSync(PRIVATE_KEY_PATH)) {
+    console.log("🔑 Using private key from file:", PRIVATE_KEY_PATH);
+    return fs.readFileSync(PRIVATE_KEY_PATH, 'utf8');
+  }
+  
+  // If neither is available, throw an error
+  throw new Error('Private key not found. Set PRIVATE_KEY environment variable or ensure PRIVATE_KEY_PATH file exists.');
+}
 
 /**
  * Create a JWT token for GitHub App authentication
@@ -23,7 +46,7 @@ function createAppJWT() {
   }
 
   try {
-    const privateKey = fs.readFileSync(PRIVATE_KEY_PATH, 'utf8');
+    const privateKey = getPrivateKey();
     const payload = {
       iss: parseInt(APP_ID),
       iat: now,
@@ -38,6 +61,7 @@ function createAppJWT() {
       expiresAt: payload.exp
     };
 
+    console.log("🔑 JWT token created successfully");
     return token;
   } catch (error) {
     console.error("❌ Error creating JWT:", error.message);
